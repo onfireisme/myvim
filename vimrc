@@ -6,6 +6,7 @@
 " make changes after sourcing debian.vim since it alters the value of the
 " 'compatible' option.
 
+
 " This line should not be removed as it ensures that various options are
 " properly set to work with the Vim-related packages available in Debian.
 runtime! debian.vim
