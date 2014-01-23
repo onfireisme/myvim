@@ -240,20 +240,35 @@ endif
 " 需要去掉./这两个字符 
 
 " C的编译和运行 
-map <F5> :call CompileRunGcc()<CR> 
-func! CompileRunGcc() 
-exec "w" 
-exec "!gcc % -o %<" 
-exec "! ./%<" 
-endfunc 
+" map <F5> :call CompileRunGcc()<CR> 
+" func! CompileRunGcc() 
+" exec "w" 
+" exec "!gcc % -o %<" 
+" exe ":!./%<"
+" endfunc 
 
+au BufEnter *.cpp set makeprg=g++\ -g\ %\ -o\ %< 
+au BufEnter *.c set makeprg=gcc\ -g\ %\ -o\ %< 
+au BufEnter *.py set makeprg=python\ % 
+au BufEnter *.[rR] set makeprg=Rscript\ %
+map <F5> :call CompileGcc()<CR>
+func! CompileGcc()
+    exec "w" 
+    make
+endfunc
+
+" run the .o file of c and C++
+map <F6> :call RunGcc()<CR>
+func! RunGcc()
+	exec "!./%<"
+endfunc
 " C++的编译和运行 
-map <F6> :call CompileRunGpp()<CR> 
-func! CompileRunGpp() 
-exec "w" 
-exec "!g++ % -o %<" 
-exec "! ./%<" 
-endfunc 
+"map <F6> :call CompileRunGpp()<CR> 
+"func! CompileRunGpp() 
+"exec "w" 
+"exec "!g++ % -o %<" 
+"exec "! ./%<" 
+"endfunc 
 
 
 " If using a dark background within the editing area and syntax highlighting
